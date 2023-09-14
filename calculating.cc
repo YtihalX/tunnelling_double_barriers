@@ -45,7 +45,8 @@ int main() {
   int len = 0;
   for (int i = 0; i < NUM_V0; i++) {
     for (int j = 0; j < NUM_KAPPA; j++) {
-      len += sprintf(res + len, "%f\t%f\n", 1.0172526041666666e-5 + 2. / NUM_KAPPA * j,
+      len += sprintf(res + len, "%f\t%f\n",
+                     1.0172526041666666e-5 + 2. / NUM_KAPPA * j,
                      value[i * NUM_KAPPA + j]);
     }
     len += sprintf(res + len, "\n\n");
@@ -54,7 +55,6 @@ int main() {
   fprintf(fptr, "%s", res);
   fclose(fptr);
 
-    
   fptr = popen("gnuplot -persistent", "w");
   fprintf(fptr, "set xlabel \"kappa\"\n");
   fprintf(fptr, "set ylabel \"probability\"\n");
@@ -92,69 +92,82 @@ complex<double> f(double kappa, double V_0) {
              pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
          conj(V_0) *
          exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-             conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) /
+             conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0)))) /
          (-1.6000000000000000e-07 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               conj(V_0) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               conj(kappa) * (conj(V_0) - conj(V_0) * conj(kappa)) +
           -8.0000000000000002e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               pow(conj(V_0), 2.0) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(kappa), 2.0) +
           -4.0000000000000001e-08 * pow(conj(V_0), 2.0) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(kappa), 2.0) +
           -4.0000000000000001e-08 *
               pow(conj(V_0) - conj(V_0) * conj(kappa), 2.0) +
           2.4000000000000003e-07 * conj(V_0) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               conj(kappa) * (conj(V_0) - conj(V_0) * conj(kappa)) +
           8.0000000000000002e-08 *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(V_0) - conj(V_0) * conj(kappa), 2.0) +
           -4.0000000000000001e-08 *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(V_0) - conj(V_0) * conj(kappa), 2.0) +
           std::complex<double>(0.0, 1.6000000000000000e-07) *
               conj(pow(V_0 * kappa, (3.0 / 2.0))) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
-              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
+              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                       (1.0 / 2.0))) +
           4.0000000000000001e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               pow(conj(V_0), 2.0) * pow(conj(kappa), 2.0) +
           8.0000000000000002e-08 * pow(conj(V_0), 2.0) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(kappa), 2.0) +
           4.0000000000000001e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               pow(conj(V_0), 2.0) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(kappa), 2.0) +
           std::complex<double>(0.0, -1.6000000000000000e-07) *
               conj(pow(V_0 * kappa, (3.0 / 2.0))) *
-              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                       (1.0 / 2.0))) +
           2.4000000000000003e-07 * conj(V_0) * conj(kappa) *
               (conj(V_0) - conj(V_0) * conj(kappa)) +
           -8.0000000000000002e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(V_0) - conj(V_0) * conj(kappa), 2.0) +
           4.0000000000000001e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
@@ -163,11 +176,14 @@ complex<double> f(double kappa, double V_0) {
           std::complex<double>(0.0, -1.6000000000000000e-07) *
               conj(pow(V_0 * kappa, (1.0 / 2.0))) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
-              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (3.0 / 2.0))) +
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
+              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                       (3.0 / 2.0))) +
           1.6000000000000000e-07 * conj(V_0) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               conj(kappa) * (conj(V_0) - conj(V_0) * conj(kappa)) +
           8.0000000000000002e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
@@ -179,54 +195,66 @@ complex<double> f(double kappa, double V_0) {
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               pow(conj(V_0) - conj(V_0) * conj(kappa), 2.0) +
           8.0000000000000002e-08 *
               exp(std::complex<double>(0.0, -2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * conj(pow(V_0 * kappa, (1.0 / 2.0)))) *
               conj(V_0) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                           (1.0 / 2.0)))) *
               conj(kappa) * (conj(V_0) - conj(V_0) * conj(kappa)) +
           std::complex<double>(0.0, 1.6000000000000000e-07) *
               conj(pow(V_0 * kappa, (1.0 / 2.0))) *
-              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (3.0 / 2.0)))) /
+              conj(pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                       (3.0 / 2.0)))) /
          exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
              pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
          (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * conj(kappa) *
          (conj(V_0) - conj(V_0) * conj(kappa)) /
          (8.0000000000000002e-08 * V_0 *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa +
           4.0000000000000001e-08 *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) +
           8.0000000000000002e-08 * (V_0 * V_0) * (kappa * kappa) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) +
           4.0000000000000001e-08 *
               exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) +
-          2.4000000000000003e-07 * V_0 * (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa +
-          -4.0000000000000001e-08 * pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) +
-          8.0000000000000002e-08 * pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) *
+          2.4000000000000003e-07 * V_0 *
+              (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa +
+          -4.0000000000000001e-08 *
+              pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) +
+          8.0000000000000002e-08 *
+              pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) +
           -4.0000000000000001e-08 * (V_0 * V_0) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               (kappa * kappa) +
           -4.0000000000000001e-08 * (V_0 * V_0) * (kappa * kappa) +
           2.4000000000000003e-07 * V_0 *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa +
           std::complex<double>(0.0, -1.6000000000000000e-07) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (3.0 / 2.0)) *
@@ -239,12 +267,15 @@ complex<double> f(double kappa, double V_0) {
               exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               (kappa * kappa) +
-          1.6000000000000000e-07 * V_0 * (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa *
+          1.6000000000000000e-07 * V_0 *
+              (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) +
           4.0000000000000001e-08 * (V_0 * V_0) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               (kappa * kappa) +
@@ -253,10 +284,12 @@ complex<double> f(double kappa, double V_0) {
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) +
           std::complex<double>(0.0, 1.6000000000000000e-07) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (3.0 / 2.0)) *
               pow(V_0 * kappa, (1.0 / 2.0)) +
           std::complex<double>(0.0, 1.6000000000000000e-07) *
@@ -264,11 +297,13 @@ complex<double> f(double kappa, double V_0) {
               pow(V_0 * kappa, (3.0 / 2.0)) +
           -4.0000000000000001e-08 *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), 2.0) +
           std::complex<double>(0.0, -1.6000000000000000e-07) *
               exp(4.0000000000000001e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) *
               pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)) *
               pow(V_0 * kappa, (3.0 / 2.0)) +
           -8.0000000000000002e-08 * (V_0 * V_0) *
@@ -276,13 +311,15 @@ complex<double> f(double kappa, double V_0) {
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               (kappa * kappa) *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0))) +
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0))) +
           -1.6000000000000000e-07 * V_0 *
               exp(std::complex<double>(0.0, 2.0000000000000000e-02) *
                   pow(2.0, (1.0 / 2.0)) * pow(V_0 * kappa, (1.0 / 2.0))) *
               (std::complex<double>(V_0 - V_0 * kappa, 0.0)) * kappa *
               exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
-                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)))) *
+                  pow(std::complex<double>(V_0 - V_0 * kappa, 0.0),
+                      (1.0 / 2.0)))) *
          kappa *
          exp(2.0000000000000000e-02 * pow(2.0, (1.0 / 2.0)) *
              pow(std::complex<double>(V_0 - V_0 * kappa, 0.0), (1.0 / 2.0)));

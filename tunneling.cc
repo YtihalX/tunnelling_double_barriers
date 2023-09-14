@@ -50,7 +50,7 @@ int main() {
       lst{k0 == sqrt(2 * m * E) * 0.01, k1 == sqrt(2 * m * (V_0 - E)) * 0.01});
   R = R.subs(lst{E == kappa * V_0, m == 1, a == 1, b == 1});
   ex prob = R * conjugate(R);
-  cout<<csrc_double<<prob<<'\n';
+  cout << csrc_double << prob << '\n';
 
   return 0;
   // cout<<conjugate(R.subs(lst{a == 1, b == 1, m == 1}))*R<<'\n';
