@@ -1,4 +1,5 @@
 #include <complex>
+#include <cstdlib>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,19 +8,20 @@ using namespace ::std;
 
 #define NUM_THREADS 12
 #define NUM_V0 256
-#define NUM_KAPPA 196608
+#define NUM_KAPPA (long long)3145728
 
 void *routine(void *arg);
 complex<double> f(double kappa, double V_0);
 
-char res[NUM_V0 * (NUM_KAPPA + 1) * 27];
-double value[NUM_KAPPA * NUM_V0];
 struct parg {
   double *arr;
   int thread_id;
 };
 
 int main() {
+
+  char *res = (char *)malloc((NUM_V0 * (NUM_KAPPA + 1) * 27) * sizeof(char));
+  double *value = (double *)malloc((NUM_KAPPA * NUM_V0) * sizeof(double));
 
   pthread_t threads[NUM_THREADS];
   parg args[NUM_THREADS];
@@ -42,18 +44,20 @@ int main() {
     }
   }
 
-  int len = 0;
+  long long len = 0;
   for (int i = 0; i < NUM_V0; i++) {
-    for (int j = 0; j < NUM_KAPPA; j++) {
+    for (long long j = 0; j < NUM_KAPPA; j++) {
       len += sprintf(res + len, "%f\t%f\n",
                      1.0172526041666666e-5 + 2. / NUM_KAPPA * j,
                      value[i * NUM_KAPPA + j]);
     }
     len += sprintf(res + len, "\n\n");
   }
+  free(value);
   FILE *fptr = fopen("prob.dat", "w");
   fprintf(fptr, "%s", res);
   fclose(fptr);
+  free(res);
 
   fptr = popen("gnuplot -persistent", "w");
   fprintf(fptr, "set xlabel \"kappa\"\n");
@@ -66,6 +70,7 @@ int main() {
   fprintf(fptr, "}\n");
   fflush(fptr);
   pclose(fptr);
+
   return 0;
 }
 
@@ -79,7 +84,7 @@ void *routine(void *arg) {
     double kappa = 1.0172526041666666e-5 + 2. / NUM_KAPPA * column;
     for (int row = 0; row < NUM_V0; row++) {
       // printf("i: %d, j: %d\n", row, column);
-      double V_0 = 3000 + 1320000. / NUM_V0 * row;
+      double V_0 = 1000 + 1320000. / NUM_V0 * row;
       warg.arr[row * NUM_KAPPA + column] = f(kappa, V_0).real();
     }
   }
